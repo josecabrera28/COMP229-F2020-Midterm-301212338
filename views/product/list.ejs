@@ -1,0 +1,31 @@
+<%- include ../partials/header.ejs %>
+
+<%- include ../partials/top_nav.ejs %>
+ 
+<main class="container">
+  <h1><%= title %></h1>
+  <p>Welcome to <%= title %></p>
+  <button type="button" class="btn btn-outline-success"><a href='/products/add'>Add Product</a></button>
+  <table class="table table-hover">
+    <thead>
+        <tr>
+          <th scope="col">name</th>
+          <th scope="col">company</th>
+          <th scope="col">price</th>
+        </tr>
+        <tbody>
+            <% for (let index = 0; index < ProductList.length; index++) { %>
+                <tr>
+                    <td><%= ProductList[index].name %></td>
+                    <td><%= ProductList[index].company %></td>
+                    <td>$ <%= ProductList[index].price %></td>
+                </tr>
+            <% } %>
+        </tbody>
+    </thead>
+  </table>
+</main>
+
+<%- include ../partials/bottom_nav.ejs %>  
+
+<%- include ../partials/footer.ejs %>
