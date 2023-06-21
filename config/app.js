@@ -8,6 +8,9 @@ let mongoose = require('mongoose');
 let DB= require('./db');
 mongoose.connect(DB.URI, {useUnifiedTopology: true, useUnifiedTopology: true, useNewUrlParser: true});
 
+let DB2= require('./db2');
+mongoose.connect(DB.URI, {useUnifiedTopology: true, useUnifiedTopology: true, useNewUrlParser: true});
+
 let mongoDB= mongoose.connection;
 mongoDB.on('error', console.error.bind(console,'connection Error:'));
 mongoDB.once('open',()=>{
@@ -17,6 +20,7 @@ mongoDB.once('open',()=>{
 var indexRouter = require('../routes/index');
 var usersRouter = require('../routes/users');
 var productsRouter = require('../routes/product');
+var employeeRouter = require('../routes/employee');
 
 var app = express();
 
@@ -34,6 +38,7 @@ app.use(express.static(path.join(__dirname, '../node_modules')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/products',productsRouter);
+app.use('/employees',employeeRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
