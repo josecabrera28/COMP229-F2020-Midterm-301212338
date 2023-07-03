@@ -1,0 +1,31 @@
+<%- include ../partials/header.ejs %>
+
+<%- include ../partials/top_nav.ejs %>
+ 
+<main class="container">
+  <h1><%= title %></h1>
+  <p>Welcome to <%= title %></p>
+  <form method="POST">
+    <div class="form-group">
+      <label for="name">Track name:</label>
+      <input type="text" class="form-control" id="name" name="name" value="<%= track.name %>">
+    </div>
+    <div class="form-group">
+      <label for="artist">Artist:</label>
+      <input type="text" class="form-control" id="artist" name="artist" value="<%= track.artist %>">
+    </div>
+    <div class="form-group">
+      <label for="duration">Duration:</label>
+      <input type="text" class="form-control" id="duration" name="duration" value="<%= track.duration %>">
+    </div>
+    <div class="form-group">
+        <label for="year">Year:</label>
+        <input type="text" class="form-control" id="year" name="year" value="<%= track.year %>">
+      </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</main>
+
+<%- include ../partials/bottom_nav.ejs %>  
+
+<%- include ../partials/footer.ejs %>
