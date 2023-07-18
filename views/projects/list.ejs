@@ -1,0 +1,34 @@
+<%- include ../partials/header.ejs %>
+
+<%- include ../partials/top_nav.ejs %>
+ 
+<main class="container">
+  <h1><%= title %></h1>
+  <p>Welcome to <%= title %></p>
+  <button type="button" class="btn btn-outline-success"><a href='/projects/add'>Add Project</a></button>
+  <table class="table table-hover">
+    <thead>
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Description</th>
+          <th scope="col">Deadline</th>
+        </tr>
+        <tbody>
+            <% for (let index = 0; index < ProjectsList.length; index++) { %>
+                <tr>
+                    <td><%= ProjectsList[index].title %></td>
+                    <td><%= ProjectsList[index].description %></td>
+                    <td> <%= ProjectsList[index].deadline %></td>
+                    <td>
+                      <a href="/projects/edit/<%= ProjectsList[index].id %>" class="btn btn-info btn-sm"><i class="fa-solid fa-file-pen fa-lg"></i>&nbsp;Edit</a>
+                    </td>
+                </tr>
+            <% } %>
+        </tbody>
+    </thead>
+  </table>
+</main>
+
+<%- include ../partials/bottom_nav.ejs %>  
+
+<%- include ../partials/footer.ejs %>

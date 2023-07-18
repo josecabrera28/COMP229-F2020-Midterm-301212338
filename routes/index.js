@@ -17,14 +17,14 @@ router.get('/about', function(req, res, next) {
 });
 
 /* GET contact page. */
-router.get('/contact', function(req, res, next) {
+/*router.get('/contact', function(req, res, next) {
   res.render('index', { title: 'Contact' });
-});
+});*/
 
 /* GET project page. */
-router.get('/project', function(req, res, next) {
-  res.render('index', { title: 'Project' });
-});
+/*router.get('/projects', function(req, res, next) {
+  res.render('index', { title: 'Projects' });
+});*/
 
 /* GET service page. */
 router.get('/service', function(req, res, next) {

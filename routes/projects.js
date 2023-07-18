@@ -1,37 +1,36 @@
 const { Mongoose } = require('mongoose');
-const trackModel = require('../models/tracks');
+const projectModel = require('../models/projects');
 const express =require('express');
 const router = express.Router();
 
 //READ
 router.get('/',async (req,res,next)=>{
-    await trackModel.find((err,TracksList)=>{
+    await projectModel.find((err,ProjectsList)=>{
         if(err){
             console.error(err);
             console.log(err);
         }else{
-            res.render('tracks/list',{title: "Tracks",TracksList: TracksList});
+            res.render('projects/list',{title: "Projects",ProjectsList: ProjectsList});
         }
     });
 });
 
 //CREATE
 router.get('/add',async (req,res,next)=>{
-    res.render('tracks/add',{title: "Add a Track"});
+    res.render('projects/add',{title: "Add a Project"});
 });
 
 router.post('/add',async (req,res,next)=>{
-    let trackToAdd = trackModel ({
-        "name": req.body.name,
-        "artist": req.body.artist,
-        "duration": req.body.duration,
-        "year": req.body.year});
-    await trackModel.create(trackToAdd, (err)=>{
+    let projectToAdd = projectModel ({
+        "title": req.body.title,
+        "description": req.body.description,
+        "deadline": req.body.deadline});
+    await projectModel.create(projectToAdd, (err)=>{
         if (err){
             console.error(err);
             console.log(err);
         }else{
-            res.redirect('/tracks');
+            res.redirect('/projects');
         }
     });
 });
@@ -39,32 +38,31 @@ router.post('/add',async (req,res,next)=>{
 //UPDATE
 router.get('/edit/:id',async(req,res,next)=>{
     let id = req.params.id;
-    await trackModel.findById(id, (err,trackFound)=>{
+    await projectModel.findById(id, (err,projectFound)=>{
         if(err){
             console.error(err);
             console.log(err);
         }else{
-            res.render('tracks/edit',{title: "Edit track",track: trackFound});
+            res.render('projects/edit',{title: "Edit Project",project: projectFound});
         }
     });
 });
 
 router.post('/edit/:id',async(req,res,next)=>{
     let id = req.params.id;
-    let trackToUpdate = trackModel({
+    let projectToUpdate = projectModel({
         "_id": id,
-        "name": req.body.name,
-        "artist": req.body.artist,
-        "duration": req.body.duration,
-        "year": req.body.year
+        "title": req.body.title,
+        "description": req.body.description,
+        "deadline": new Date(req.body.deadline)
     });
 
-    await trackModel.updateOne({_id:id},trackToUpdate, (err)=>{
+    await projectModel.updateOne({_id:id},projectToUpdate, (err)=>{
         if(err){
             console.error(err);
             console.log(err);
         }else{
-            res.redirect('/tracks');
+            res.redirect('/projects');
         }
     });
 });
