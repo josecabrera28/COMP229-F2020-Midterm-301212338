@@ -6,8 +6,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 let mongoose = require('mongoose');
 const dbConnect = require("./mongoAtlas");
-/*
-let DB= require('./db');
+
+/*let DB= require('./db');
 mongoose.connect(DB.URI, {useUnifiedTopology: true, useUnifiedTopology: true, useNewUrlParser: true});
 
 let DB2= require('./db2');
