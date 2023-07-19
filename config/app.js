@@ -1,21 +1,26 @@
 var createError = require('http-errors');
+require('dotenv').config();
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 let mongoose = require('mongoose');
-
+const dbConnect = require("./mongoAtlas");
+/*
 let DB= require('./db');
 mongoose.connect(DB.URI, {useUnifiedTopology: true, useUnifiedTopology: true, useNewUrlParser: true});
 
 let DB2= require('./db2');
 mongoose.connect(DB.URI, {useUnifiedTopology: true, useUnifiedTopology: true, useNewUrlParser: true});
-
-let mongoDB= mongoose.connection;
+*/
+/*let mongoDB= mongoose.connection;
 mongoDB.on('error', console.error.bind(console,'connection Error:'));
 mongoDB.once('open',()=>{
   console.log('Database connected Succesfully');
-});
+});*/
+
+//Atlas mongo database connection
+dbConnect();
 
 var indexRouter = require('../routes/index');
 var usersRouter = require('../routes/users');
